@@ -30,6 +30,13 @@ pipeline {
                 
             }
         }
+        stage('Artefact Upload') {
+            steps {
+
+                sh 'tag=$(git describe --tags)'
+                sh 'upload=$(curl -XPOST -H "Authorization:token $token" -H "Content-Type:application/octet-stream" --data-binary @build/libs/caesar-cipher.jar "https://uploads.github.com/repos/HenriO354/caesar-cipher-1/releases/$tag/assets?name=caesar-cipher.jar")' 
+            }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
