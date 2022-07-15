@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Release') {
             steps {
-                sh 'token="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"'
+                sh 'token="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"'
                 sh 'tag=$(git describe --tags)'
                 sh 'message="$(git for-each-ref refs/tags/$tag --format=\'%(contents)\')"'
                 sh 'name=$(echo "$message" | head -n1)'
